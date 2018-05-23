@@ -1,0 +1,132 @@
+//understand the OOP concept
+
+//case studies
+//1. Utensils (Cooking and Cleaning)
+//2. Electronics
+
+//1. Cleaning Utensils
+
+class interface iUtensil {
+    buy();
+    wash();
+    spoil();
+}
+
+class abstract Utensil extend iUtensil{
+    buy(){
+        print('you just bought a utensil')
+    }
+    wash(){
+        print('you just washed the utensil')
+    }
+    borrow();
+}
+
+class spice{
+    add(){
+        console.log('You're adding the spice')
+    }
+}
+class meat{
+    chop(){
+        console.log('You're chopping the meat')
+    }
+    add(){
+        console.log('You're adding the meat')
+    }
+    fry(){
+        console.log('You're frying the meat')
+    }
+}
+
+class liquid{
+    pour(){
+        console.log('You're pouring in a liquid' )
+    }
+}
+class food{
+    eat(){
+        console.log('You're done eating')
+    }
+}
+
+class cookingU extends Utensil{
+    var spice, meat, liquid;
+    construct cookingU(spice, meat, liquid){
+        this.spice = spice;
+        this.meat = meat;
+        this.liquid = liquid;
+    }
+    construct cookingU(meat, liquid){
+        this.meat = meat;
+        this.liquid = liquid;
+    }
+    construct cookingU(food){
+        this.food = food;
+    }
+    //this has the methods of Utensil..
+    borrow(){
+        print('You just borrowed this cooking utensil');
+    }
+    spoil(){
+        print('It spoilt. You'd have to buy a new one.')
+    }
+    cook(){
+        if (this.spice !== null){
+            this.liquid.pour();
+            this.meat.add();
+            this.spice.add();
+            console.log('The food is cooked');
+        }else if (this.liquid === null){
+            this.food.eat()
+        }else{
+            this.meat.chop();
+            this.liquid.pour();
+            this.meat.add();
+            this.meat.fry();
+            console.log('The meat is fried');
+        }      
+    use(){
+        this.food.eat();
+        }
+    }
+}
+
+class kitchen {
+    //instanting the objects we'll need
+
+    spice salt = new spice(); //instantiates a new spice called salt
+    spice pepper = new spice(); 
+    meat beef = new meat(); 
+    liquid water = new water(); 
+    liquid oil = new water(); 
+    food meatSoup = new food(); 
+    cookingU pot = new cookingU(spice salt,meat beef, liquid water); 
+    cookingU fryer = new cookingU(meat beef, liquid oil); 
+    cookingU plate = new cookingU(food meatSoup) 
+
+    //calling the methods on the objects
+
+    pot.buy(); //outputs you just bought a utensil
+    fryer.borrow(); //outputs You just borrowed this cooking utensil
+
+    fryer.cook(); //outputs You're chopping the meat
+                  //You're pouring in a liquid
+                  //You're adding the meat
+                  //You're frying the meat
+                  //The meat is fried
+
+    pot.cook(); //outputs You're pouring in a liquid
+                //You're adding the meat
+                // You're adding the spice
+                // The food is cooked
+
+    plate.use(); //outputs youre done eating
+
+    pot.wash(); //you just washed the utensil
+    plate.wash(); 
+    fryer.spoil(); // It spoilt. You'd have to buy a new one
+    fryer.buy(); // you just bought a utensil
+}
+
+
