@@ -24,44 +24,49 @@ class Rope{
 		console.log('The rope is drawn');
 	}
 }
-class Start{
+class Motor{
 	import Key;
 	import Rope;
-	constructor start(key){
+	constructor motor(key){
 		this.key = Key;
 	}
-	constructor start(key, rope){
+	constructor motor(key, rope){
 		this.key = Key;
 		this.rope = Rope;
 	}
-	if(this.rope === null){
-		this.key.turn();
-		console.log('The Generator is started');
-	}
-	else{
-		this.key.turn();
-		this.rope.draw();
-		console.log('The Noisy Generator is started');
+	function start(){
+		if(this.rope === null){
+			this.key.turn();
+			console.log('The Generator is started');
+		}
+		else{
+			this.key.turn();
+			this.rope.draw();
+			console.log('The Noisy Generator is started');
+		}
 	}
 }
 
 class silentGen extends Generator, Gen{
-	import Start;
+	import Motor;
 	constructor silentGen(){
-		this.start(key);}
+		this.Motor(key);}
 	function sound(){console.log('tsh tsh tshhhhh')}
 }
 class noisyGen extends Generator, Gen{
-	import Start;
+	import Motor;
 	constructor noisyGen(){
-		this.start(key, rope);}
+		this.Motor(key, rope);}
 	function sound(){console.log('dum dum dummm')}
 }
-class program extends Start{
+class program extends Motor{
 	Key metalKey = new Key();
 	Rope longRope = new Rope();
+	Motor newMotor = new Motor(key);
 	silentGen lister = new silentGen();
 	noisyGen tiger = new noisyGen();
+	lister.Motor.start(); //outputs key is turned. The generator is started.
+	tiger.Motor.start(); //outputs key is turned, rope is drawn, The noisy generator is started.
 	lister.makeNoise(); //outputs tsh tsh tshhhhh
 	tiger.makeNoise(); //outputs dum dum dummmm
 	lister.giveLight(); 
