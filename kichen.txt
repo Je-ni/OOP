@@ -1,10 +1,6 @@
 //understand the OOP concept
 
-//case studies
-//1. Utensils (Cooking and Cleaning)
-//2. Electronics
-
-//1. Cleaning Utensils
+//1. Cooking using Utensils
 
 class interface iUtensil {
     buy();
